@@ -3,21 +3,27 @@ const routes = [
         method: 'GET',
         path: '/',
         handler: (request, h) => {
-            return 'Homepage';
+            return h.response('Homepage')
+                .type('text/plain')
+                .code(200);
         },
     },
     {
         method: '*',
         path: '/',
         handler: (request, h) => {
-            return 'Halaman tidak dapat diakses dengan method tersebut';
+            return h.response('Halaman tidak dapat diakses dengan method tersebut')
+                .type('text/plain')
+                .code(400);
         },
     },
     {
         method: 'GET',
         path: '/about',
         handler: (request, h) => {
-            return 'About page';
+            return h.response('About page')
+                .type('text/plain')
+                .code(200);
         },
     },
     {
@@ -25,14 +31,18 @@ const routes = [
         path: '/about',
         handler: (request, h) => {
             const { name } = request.payload;
-            return `Halo, ${name}! Ini adalah halaman about`;
+            return h.response(`Halo, ${name}! Ini adalah halaman about`)
+                .type('text/plain')
+                .code(200);
         },
     },
     {
         method: '*',
         path: '/about',
         handler: (request, h) => {
-            return 'Halaman tidak dapat diakses dengan method';
+            return h.response('Halaman tidak dapat diakses dengan method')
+                .type('text/plain')
+                .code(400);
         },
     },
     {
@@ -43,17 +53,23 @@ const routes = [
             const { lang } = request.query;
 
             if (lang === 'id') {
-                return `Hai, ${name}!`;
+                return h.response(`Hai, ${name}!`)
+                    .type('text/plain')
+                    .code(200);
             }
 
-            return `Hello, ${name}!`;
+            return h.response(`Hello, ${name}!`)
+                .type('text/plain')
+                .code(200);
         },
     },
     {
         method: '*',
         path: '/{any*}',
         handler: (request, h) => {
-            return 'Halaman tidak ditemukan';
+            return h.response('Halaman tidak ditemukan')
+                .type('text/plain')
+                .code(404);
         },
     },
 ];
