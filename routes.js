@@ -21,6 +21,14 @@ const routes = [
         },
     },
     {
+        method: 'POST',
+        path: '/about',
+        handler: (request, h) => {
+            const { name } = request.payload;
+            return `Halo, ${name}! Ini adalah halaman about`;
+        },
+    },
+    {
         method: '*',
         path: '/about',
         handler: (request, h) => {
